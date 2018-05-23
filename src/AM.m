@@ -5,18 +5,31 @@
 # El siguiente codigo describe el proceso de Modulacion de Amplitud
 # que se realiza a una señal portadora en base a una moduladora
 
-# tiempo en segundos
-t = 0:1*10^-3:1;
-
 # en Voltios pico
 # portadora de 10mV
 Vc = 1*10^-3;  
+disp("Voltaje de Portadora"), disp(Vc);
 # mensaje o moduladora  de 6V
-Vm = 6;
+Vm = 1.5;
+disp("Voltaje de Moduladora"), disp(Vm);
 
+
+#Valores de Resistencia y COndensador para la Oscilacion del XR2206
+disp("Valores de R1 y C1 para la oscilacion del Xr2206")
+R = 10*10^3; 
+disp(R);
+C = 1*10^-9;
+disp(C);
 # en Herz
-fc = 40;
-fm= 2;
+fc = 1/(R*C);
+tp = 1/fc;
+disp("Frec de portadora:"), disp(fc);
+#disp("Periodo de portadora"), disp(fc);
+fm= 3000;
+
+
+# Liena de tiempo en segundos. para graficar
+t = 0:tp/2048:tp*30;
 
 # Representacion de la moduladora y portadora sobre el tiempo
 # cada una con su frecuencia natural de oscilacion. 
@@ -31,6 +44,8 @@ Vamt = (Vc + Vm*sin(2*pi*fm*t)).*(sin(2*pi*fc*t));
 #N = 4096;
 #fftam=abs(fft(Vamt,N));
 #F = [0:N-1]/N;
+
+
 
 
 ## plots para las graficas. 
